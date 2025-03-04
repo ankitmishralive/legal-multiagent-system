@@ -1,0 +1,10 @@
+
+
+pip install 'crewai[tools]'
+
+sentence-transformer
+
+pip install faiss-gpu-cu12
+
+
+streamlit 

@@ -1,0 +1,9 @@
+
+
+legal-multiagent/
+
+__pycache__
+data
+legal_db
+.env
+
