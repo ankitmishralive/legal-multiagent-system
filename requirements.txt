@@ -16,7 +16,7 @@ faiss-gpu-cu12
 langchain-community
 langchain-huggingface
 langchain-huggingface
-chromadb
+# chromadb
 pypdf
 crewai-groq
 
