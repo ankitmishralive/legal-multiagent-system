@@ -6,13 +6,22 @@
 from crewai import Agent, LLM
 # from langchain.llms import Ollama
 from dotenv import load_dotenv
-
+from langchain_groq import ChatGroq
+import os 
 load_dotenv()
 
 # Initialize the open-source LLM (Ollama in this case)
-llm = LLM(model="ollama/llama3.1:latest",
-    base_url="http://localhost:11434")  # Requires Ollama to be running.  Or use another model.
+# llm = LLM(model="ollama/llama3.1:latest",
+#     base_url="http://localhost:11434")  # Requires Ollama to be running.  Or use another model.
 
+llm = ChatGroq(
+    model="deepseek-r1-distill-qwen-32b",
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+   api_key= os.getenv("GROQ_KEY")
+)
 
 
 query_agent = Agent(

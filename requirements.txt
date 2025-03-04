@@ -1,10 +1,30 @@
 
 
-pip install 'crewai[tools]'
-
-sentence-transformer
-
-pip install faiss-gpu-cu12
 
 
-streamlit 
+streamlit
+crewai
+crewai[tools]
+langchain
+langchain-groq
+python-dotenv
+sentence-transformers
+faiss-gpu-cu12
+langchain-community
+langchain-huggingface
+langchain-huggingface
+chromadb
+pypdf
+
+# sentence-transformers==2.5.1
+# google-generativeai==0.4.1
+# pip install 'crewai[tools]'
+
+# sentence-transformer
+
+# pip install faiss-gpu-cu12
+
+
+# streamlit 
+
+# pip install -qU langchain-groq
