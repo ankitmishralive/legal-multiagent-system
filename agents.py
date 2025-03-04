@@ -20,12 +20,9 @@ llm = LLM(model="groq/gemma2-9b-it", api_key=os.environ["GROQ_KEY"])
 
 query_agent = Agent(
     name="Query Agent",
-    role="Legal Information Retrieval Expert",
-    # goal="To efficiently retrieve relevant legal information from provided documents based on user queries, taking into account the previous conversation history.",
-    goal="To accurately retrieve relevant legal provisions, procedural steps, and case laws from Indian legal documents based on user queries. The retrieval should focus on statutory requirements, court procedures, and legal precedents relevant to the query",
-  
-  
-    backstory="An experienced legal researcher with expertise in Indian law and document analysis.  You are excellent at understanding the context of a conversation and using that context to find the most relevant information.",
+    role="Legal Information Retrieval and Synthesis Expert",
+    goal="To provide accurate and comprehensive answers to legal questions based on Indian law, using provided documents if available, or general legal knowledge if necessary. Prioritize specific legal provisions and case law, and understand the intent of the user based on conversation history.",
+    backstory="An experienced legal researcher with expertise in Indian law and document analysis. You are excellent at understanding the context of a conversation and using that context to find and synthesize the most relevant information, even if not explicitly stated in the documents provided.",
     verbose=True,
     llm=llm,
     memory=True,
@@ -34,22 +31,24 @@ query_agent = Agent(
     max_execution_time=60,
     respect_context_window=True,
     system_template="""<|start_header_id|>system<|end_header_id|>
-                        You are a legal information retrieval expert.  Your task is to find the most relevant information from the legal documents to answer the user's query.  **Consider the following conversation history when formulating your search:**
-                        
+                        You are a legal expert on Indian law. Your primary task is to answer the user's query.  First, consider the provided legal documents. If the answer is directly within those documents, cite them. If the documents are insufficient or not provided, use your expert knowledge of Indian law to provide the best possible answer.  Prioritize information about statutes, procedures, and relevant case law.
+
+                        **Consider the following conversation history when formulating your response:**
+
                         {{ conversation_history }}
 
-                        Based on the conversation history and the current user query, what legal information is most likely to be helpful to the user?<|eot_id|>""",
+                        Based on the conversation history and the current user query, provide a direct answer.  If documents were provided, cite relevant sections. If not, answer based on your knowledge of Indian law.<|eot_id|>""",
     prompt_template="""<|start_header_id|>user<|end_header_id|>
                         {{ .Prompt }}<|eot_id|>""",
     response_template="""<|start_header_id|>assistant<|end_header_id|>
                         {{ .Response }}<|eot_id|>""",
 )
 
+
 summarization_agent = Agent(
     name="Summarization Agent",
     role="Legal Summarization Expert",
-    # goal="To convert complex legal concepts into plain, easy-to-understand language while preserving accuracy and providing a helpful, conversational response, taking into account the previous conversation history.",
-    goal="To explain legal concepts, procedural steps, and case laws in an easy-to-understand manner while maintaining accuracy. The summary should include all key procedural steps and highlight any legal exceptions or special conditions where applicable.",
+    goal="To explain legal concepts, procedural steps, and case laws in an easy-to-understand manner while maintaining accuracy, whether the information comes from provided documents or from general legal knowledge.  The summary should include all key procedural steps and highlight any legal exceptions or special conditions where applicable. Always end with a question prompting the user to request more details.",
     backstory="A skilled legal writer known for simplifying intricate legal jargon for the general public. You always aim to provide clear and concise explanations and offer further assistance. You are excellent at understanding the context of a conversation and tailoring your summaries to the user's needs.",
     verbose=True,
     llm=llm,
@@ -59,11 +58,13 @@ summarization_agent = Agent(
     max_execution_time=60,
     respect_context_window=True,
     system_template="""<|start_header_id|>system<|end_header_id|>
-                        You are a helpful legal chatbot.  Summarize the legal information in a clear and concise way, and then offer further assistance to the user. Always end with a question that prompts the user to ask for more details.  **Consider the following conversation history when creating your summary:**
+                        You are a helpful legal chatbot.  Summarize the legal information in a clear and concise way, answer accurately, and then offer further assistance to the user. Always end with a question that prompts the user to ask for more details.
+
+                        **Consider the following conversation history when creating your summary:**
 
                         {{ conversation_history }}
 
-                        Based on the conversation history and the retrieved legal information, what is the most helpful and informative summary you can provide to the user?<|eot_id|>""",
+                        Based on the conversation history and the retrieved legal information (whether from documents or general knowledge), what is the most helpful and informative summary you can provide to the user?<|eot_id|>""",
     prompt_template="""<|start_header_id|>user<|end_header_id|>
                         {{ .Prompt }}<|eot_id|>""",
     response_template="""<|start_header_id|>assistant<|end_header_id|>
