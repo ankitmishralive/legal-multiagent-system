@@ -1,17 +1,25 @@
 # streamlit_app.py
+
+
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+
+
+
+
 import streamlit as st
 from crewai import Crew, Process
 from agents import query_agent, summarization_agent
 from task import retrieval_task, summarization_task
 import os
 import io
-import sys
+# import sys
 import time  # Import the time module
 
 
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 
 
 @st.cache_resource

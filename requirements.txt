@@ -19,7 +19,6 @@ langchain-huggingface
 # chromadb
 pypdf
 groq
-
 pysqlite3-binary
 
 # sentence-transformers==2.5.1
