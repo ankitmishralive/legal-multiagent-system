@@ -5,6 +5,8 @@
 streamlit
 crewai
 # crewai[tools]
+
+
 crewai-tools
 langchain
 langchain-groq
