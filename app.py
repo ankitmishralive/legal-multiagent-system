@@ -9,6 +9,11 @@ import sys
 import time  # Import the time module
 
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+
 @st.cache_resource
 def create_crew_agents():
     crew = Crew(

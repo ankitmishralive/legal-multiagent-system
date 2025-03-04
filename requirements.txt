@@ -20,6 +20,8 @@ langchain-huggingface
 pypdf
 groq
 
+pysqlite3-binary
+
 # sentence-transformers==2.5.1
 # google-generativeai==0.4.1
 # pip install 'crewai[tools]'
