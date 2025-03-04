@@ -20,9 +20,9 @@ retrieval_task = Task(
 
 summarization_task = Task(
     description=(
-        # "Based on the retrieved legal information, convert the complex legal concepts into plain, easy-to-understand language while preserving accuracy.  Provide clear and concise explanations, avoiding legal jargon.  The goal is to make the information accessible to a layperson.  **The response should be formatted as a helpful chatbot message, ending with a question to encourage the user to ask for more details.**"
+        "Based on the retrieved legal information, convert the complex legal concepts into plain, easy-to-understand language while preserving accuracy.  Provide clear and concise explanations, avoiding legal jargon.  The goal is to make the information accessible to a layperson.  **The response should be formatted as a helpful chatbot message, ending with a question to encourage the user to ask for more details.**"
   
-  "Based on the retrieved legal information, provide a clear, structured summary of the procedural steps, statutory requirements, and case law in plain language. Ensure completeness by listing all steps in sequence, highlighting any exceptions, and avoiding unnecessary legal jargon"
+#   "Based on the retrieved legal information, provide a clear, structured summary of the procedural steps, statutory requirements, and case law in plain language. Ensure completeness by listing all steps in sequence, highlighting any exceptions, and avoiding unnecessary legal jargon"
   
     ),
     expected_output=(
