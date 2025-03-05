@@ -9,11 +9,9 @@ This Streamlit application provides a legal chatbot specifically tailored for In
 ## Features
 
 - **Interactive Chat Interface:** A Streamlit-based chat interface allows users to ask questions about Indian law in natural language.
-- **AI-Powered Legal Information Retrieval:** CrewAI agents efficiently retrieve relevant information from legal documents using vector databases (FAISS) and embeddings.
 - **Simplified Legal Summarization:** Complex legal concepts are translated into easy-to-understand language by specialized AI agents.
 - **Conversation History:** The chatbot maintains a conversation history to provide more contextually relevant responses.
-- **Groq Integration:** Utilizes Groq's fast inference service for efficient processing of legal queries.
-- **Standalone CrewAI Execution:** Ability to run the CrewAI workflow directly from the command line without the Streamlit interface.
+
 
 ## Architecture Diagram
 
